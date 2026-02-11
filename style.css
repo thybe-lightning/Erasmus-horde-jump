@@ -1,100 +1,73 @@
+
     body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #2b2b2b;
-      font-family: sans-serif;
+        margin: 0;
+        overflow: hidden;
+        background: #87CEEB;
+        font-family: sans-serif;
     }
 
-    .stadium {
-      width: 1300px;
-      height: 800px;
-      background: #2f6b2f;
-      border-radius: 70px;
-      position: relative;
-      box-shadow: 0 0 25px rgba(0,0,0,0.6);
-      overflow: hidden;
+    .ground {
+        position: absolute;
+        bottom: 0;
+        width: 200%;
+        height: 180px;
+        background: #c4452f;
+        border-top: 6px solid #ffffff;
+        animation: moveGround 4s linear infinite;
     }
 
-    .track {
-      position: absolute;
-      inset: 60px;
-      background: #c4452f;
-      border-radius: 400px;
-      box-shadow: inset 0 0 0 10px #b03b27;
+    .lane-line {
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        height: 6px;
+        background: repeating-linear-gradient(
+            to right,
+            white 0,
+            white 40px,
+            transparent 40px,
+            transparent 80px
+        );
+        opacity: 0.8;
     }
 
-    /* 3 Bahnen – jeweils 40px Abstand */
-    .lane {
-      position: absolute;
-      border-radius: 400px;
-      border: 4px solid rgba(255,255,255,0.9);
-      pointer-events: none;
+    @keyframes moveGround {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
     }
 
-    .lane:nth-child(1) { inset: 60px; }
-    .lane:nth-child(2) { inset: 100px; }
-    .lane:nth-child(3) { inset: 140px; }
-
-    /* Innenfeld */
-    .field {
-      position: absolute;
-      inset: 220px;
-      background: #3f8b3f;
-      border-radius: 260px;
-      box-shadow: inset 0 0 0 4px rgba(0,0,0,0.3);
+    .runner {
+        position: absolute;
+        bottom: 180px;
+        left: 150px;
+        width: 60px;
+        height: 100px;
+        background: url('https://i.imgur.com/3WbZQpA.png') center/contain no-repeat;
+        animation: run 0.5s steps(4) infinite;
     }
 
-    /* Ziellinie – exakt über 3 Bahnen */
-    .finish-line {
-      position: absolute;
-      right: 60px;
-      top: 50%;
-      transform: translateY(-50%);
-
-      width: 150px;   /* angepasst an 3 Bahnen */
-      height: 18px;
-
-      background-image: linear-gradient(
-        90deg,
-        #fff 0, #fff 18px,
-        #000 18px, #000 36px
-      );
-      background-size: 36px 18px;
-
-      box-shadow: 0 0 5px rgba(0,0,0,0.7);
+    @keyframes run {
+        from { background-position: 0 0; }
+        to   { background-position: -240px 0; }
     }
 
-    .finish-flag {
-      position: absolute;
-      right: 60px;
-      top: calc(50% - 80px);
-      background: #fff;
-      padding: 8px 14px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 4px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    .hurdle {
+        position: absolute;
+        bottom: 180px;
+        width: 40px;
+        height: 60px;
+        background: #333;
+        border: 4px solid white;
+        border-radius: 4px;
     }
 
-    .finish-stick {
-      position: absolute;
-      right: 78px;
-      top: calc(50% - 80px);
-      width: 5px;
-      height: 80px;
-      background: #333;
-    }
-
-    .title {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #fff;
-      font-weight: bold;
-      font-size: 26px;
-      text-shadow: 0 0 5px rgba(0,0,0,0.7);
+    /* Score Anzeige */
+    .score {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 32px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 5px black;
     }
