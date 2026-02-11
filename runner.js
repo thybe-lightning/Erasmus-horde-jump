@@ -1,12 +1,10 @@
-console.log("Runner scene loaded 🏃‍♂️");
-
 let runnerPos = 120;
 let runnerBottom = 80;
 let isJumping = false;
 let velocityY = 0;
 const gravity = 0.6;
 const jumpPower = 15;
-const groundLevel = 80;
+const groundLevel = 160;
 
 const runner = document.querySelector('.runner');
 
@@ -41,4 +39,3 @@ function gameLoop() {
 
 // Start game loop
 gameLoop();
-

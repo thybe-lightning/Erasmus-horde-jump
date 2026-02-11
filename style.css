@@ -39,10 +39,11 @@
     .runner {
         position: absolute;
         bottom: 180px;
+        background-color: #c4452f;
+        box-shadow: #333 0px 0px 0px 4px inset;
         left: 150px;
         width: 60px;
         height: 100px;
-        background: url('https://i.imgur.com/3WbZQpA.png') center/contain no-repeat;
         animation: run 0.5s steps(4) infinite;
     }
 
