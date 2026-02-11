@@ -5,8 +5,8 @@ let speed = 10;          // Startgeschwindigkeit
 let score = 0;          // Score
 const scoreDisplay = document.querySelector(".score");
 
-const spawnMin = 2500;
-const spawnMax = 7000;
+const spawnMin = 1000;
+const spawnMax = 1500;
 
 let gameOver = false;
 let animationId = null;
