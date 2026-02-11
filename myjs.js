@@ -76,6 +76,16 @@ function stopGame() {
     overlay.style.fontSize = '36px';
     overlay.textContent = 'Game Over — Score: ' + score;
     document.body.appendChild(overlay);
+    // reset button
+    const btn = document.createElement('button');
+    btn.textContent = 'Restart';
+    btn.style.marginTop = '20px';
+    btn.style.padding = '10px 20px';
+    btn.style.fontSize = '18px';
+    overlay.appendChild(btn);
+    btn.addEventListener('click', () => {
+        location.reload();
+    });
 }
 
 function update() {
