@@ -29,11 +29,19 @@
             transparent 80px
         );
         opacity: 0.8;
+        /* animated stripe movement; paused by default, started from JS */
+        animation: laneMove 4s linear infinite;
+        animation-play-state: paused;
     }
 
     @keyframes moveGround {
         from { transform: translateX(0); }
         to   { transform: translateX(-50%); }
+    }
+
+    @keyframes laneMove {
+        from { background-position: 0 0; }
+        to   { background-position: -160px 0; }
     }
 
     .runner {

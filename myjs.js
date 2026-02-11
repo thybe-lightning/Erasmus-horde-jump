@@ -1,7 +1,7 @@
 
 
 const hurdles = [];
-let speed = 4;          // Startgeschwindigkeit
+let speed = 10;          // Startgeschwindigkeit
 let score = 0;          // Score
 const scoreDisplay = document.querySelector(".score");
 
@@ -12,6 +12,13 @@ let gameOver = false;
 let animationId = null;
 let spawnTimers = [];
 const runnerElem = document.querySelector('.runner');
+let started = false;
+const laneLineElem = document.querySelector('.lane-line');
+
+// ensure lane-line and ground animations are paused until start
+if (laneLineElem) laneLineElem.style.animationPlayState = 'paused';
+const groundElem = document.querySelector('.ground');
+if (groundElem) groundElem.style.animationPlayState = 'paused';
 
 function spawnHurdle() {
     const hurdle = document.createElement("div");
@@ -28,10 +35,7 @@ function spawnHurdle() {
         if (!gameOver) spawnHurdle();
     }, nextSpawn);
     spawnTimers.push(id);
-}
-
-setTimeout(spawnHurdle, 3000);
-
+};
 function rectsOverlap(a, b) {
     return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
 }
@@ -86,6 +90,9 @@ function stopGame() {
     btn.addEventListener('click', () => {
         location.reload();
     });
+    // pause lane-line + ground visuals
+    if (laneLineElem) laneLineElem.style.animationPlayState = 'paused';
+    if (groundElem) groundElem.style.animationPlayState = 'paused';
 }
 
 function update() {
@@ -116,4 +123,25 @@ function update() {
     animationId = requestAnimationFrame(update);
 }
 
-update();
+function startGame() {
+    if (started) return;
+    started = true;
+    // start runner loop if available
+    if (window.startRunner) window.startRunner();
+
+    // schedule first hurdle spawn after 3s
+    const firstId = setTimeout(() => {
+        if (!gameOver) spawnHurdle();
+    }, 0);
+    spawnTimers.push(firstId);
+
+    // start the update loop
+    update();
+    // start lane-line + ground animations
+    if (laneLineElem) laneLineElem.style.animationPlayState = 'running';
+    if (groundElem) groundElem.style.animationPlayState = 'running';
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') startGame();
+});
