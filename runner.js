@@ -1,10 +1,11 @@
-let runnerPos = 180;
-let runnerBottom = 180;
+let runnerPos = 160;
+let runnerBottom = 80;
 let isJumping = false;
 let velocityY = 0;
 const gravity = 0.6;
 const jumpPower = 20;
 const groundLevel = 185;
+let gamestarted = false;
 
 const runner = document.querySelector('.runner');
 
@@ -38,4 +39,9 @@ function gameLoop() {
 }
 
 // Start game loop
-gameLoop();
+addEventListener('keydown', (e) => {
+  if (e.code === 'Space' && !gamestarted) {
+    gamestarted = true; 
+    gameLoop();
+  }
+});
