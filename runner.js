@@ -2,8 +2,8 @@ let runnerPos = 160;
 let runnerBottom = 80;
 let isJumping = false;
 let velocityY = 0;
-const gravity = 0.6;
-const jumpPower = 20;
+const gravity = 9.81 / 60; // Adjust gravity for 60 FPS
+const jumpPower = 7;
 const groundLevel = 185;
 let gamestarted = false;
 
